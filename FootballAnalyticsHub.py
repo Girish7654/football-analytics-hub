@@ -11,21 +11,33 @@ st.set_page_config(page_title="Football Analytics Hub", page_icon="⚽", layout=
 st.title("Football Analytics Hub")
 
 # Load environment variables
-load_dotenv()
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_NAME = os.getenv("DB_NAME", "football")
-DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASS = os.getenv("DB_PASSWORD", "password")
-DB_PORT = os.getenv("DB_PORT", "5432")
+# load_dotenv()
+# DB_HOST = os.getenv("DB_HOST", "localhost")
+# DB_NAME = os.getenv("DB_NAME", "football")
+# DB_USER = os.getenv("DB_USER", "postgres")
+# DB_PASS = os.getenv("DB_PASSWORD", "password")
+# DB_PORT = os.getenv("DB_PORT", "5432")
+
+# # Initialize database connection
+# try:
+#     engine = create_engine(f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+#     # Test connection with a simple query
+#     engine.connect()
+# except Exception as e:
+#     st.error(f"Failed to connect to database: {e}")
+#     st.stop()
 
 # Initialize database connection
 try:
-    engine = create_engine(f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
-    # Test connection with a simple query
+    engine = create_engine("postgresql://postgres:eeZfANwomZoYWyLIKUcALUtClhCXYEMx@caboose.proxy.rlwy.net:18231/railway")
     engine.connect()
 except Exception as e:
     st.error(f"Failed to connect to database: {e}")
     st.stop()
+
+
+
+
 
 # Sidebar navigation
 st.sidebar.header("Navigation")
