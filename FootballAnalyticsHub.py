@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+import sqlalchemy
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 from st_aggrid import AgGrid, GridOptionsBuilder
@@ -27,9 +28,11 @@ st.title("Football Analytics Hub")
 #     st.error(f"Failed to connect to database: {e}")
 #     st.stop()
 
-# Initialize database connection
+
+DATABASE_URL = st.secrets["DATABASE_URL"]
+
 try:
-    engine = create_engine("postgresql://postgres:eeZfANwomZoYWyLIKUcALUtClhCXYEMx@caboose.proxy.rlwy.net:18231/railway")
+    engine = sqlalchemy.create_engine(DATABASE_URL)
     engine.connect()
 except Exception as e:
     st.error(f"Failed to connect to database: {e}")
